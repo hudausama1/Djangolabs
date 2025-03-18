@@ -1,0 +1,26 @@
+{%extends 'parent.html'%}
+{%block content%}
+<h1>list courses</h1>
+<!--{{courses}}-->
+<table border="1" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    {%for course in courses%}
+        <tr>
+            <td>{{course.0}}</td>
+            <td>{{course.1}}</td>
+            <td>
+                <a href="{%url 'Courseupdate' course.0 %}">Update</a>
+                <a href="{%url 'Coursedelete' course.0%}">Delete</a>
+            </td>
+        </tr>
+    {%endfor%}
+</table>
+
+{%endblock%}
+{%block tit%}
+course - list
+{%endblock%}
