@@ -13,3 +13,10 @@ class Trainee(models.Model):
     updateddate=models.DateTimeField(auto_now=True)
     isactive=models.BooleanField(default=True)
     course=models.ForeignKey(to=Course,on_delete=models.CASCADE)
+
+    @classmethod
+    def addtrainee(cls, name, email, image, courseid):
+        Trainee.objects.create(name=name
+                               , email=email
+                               , image=image
+                               , course=Course.getcoursebyid(courseid))

@@ -1,7 +1,12 @@
 from django.shortcuts import render,redirect
 from .models import Trainee
+from course.models import Course
 
 from django.http import HttpResponseRedirect,HttpResponse
+
+from ..course.models import Course
+
+
 # Create your views here.
 def getalltrainees(req):
     context={}
@@ -10,18 +15,12 @@ def getalltrainees(req):
     context['trainees']=Trainee.objects.filter(isactive=True)
     return render(req,'trainee/list.html',context)
 def addtrainees(req):
+    context={'course':Course.getallcourses()}
     if(req.method=='POST'):
-        # #get info
-        # trname=req.POST['trname']
-        # tremail=req.POST['tremail']
-        # trimg=req.FILES['trimg']
-        # #save db
-        # obj=Trainee(name=trname,email=tremail,image=trimg)
-        # obj.save()
-        Trainee.objects.create(name=req.POST['trname']
-                               ,email=req.POST['tremail']
-                               ,image=req.FILES['trimg']
-                               )
+        Trainee.addtrainee(req.POST['trname']
+                               ,req.POST['tremail']
+                               ,req.FILES['trimg']
+                               ,req.POST["trcourse"])
         return redirect('trall')
     return render(req,'trainee/add.html')
 def updatetrainees(req,id):
