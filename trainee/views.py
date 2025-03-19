@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Trainee
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
 def getalltrainees(req):
     context={}
@@ -21,15 +21,16 @@ def addtrainees(req):
                                ,email=req.POST['tremail']
                                ,image=req.FILES['trimg']
                                )
-        return render(req,'trainee/add.html')
+        return redirect('trall')
+    return render(req,'trainee/add.html')
 def updatetrainees(req,id):
     context={'oldobj':
              Trainee.objects.get(id=id)}
     if(req.method=='POST'):
         Trainee.objects.filter(id=id).update(
             name=req.POST['trname'],
-        email=req.POST['tremail'],
-        image=req.FILES['trimg'],
+            email=req.POST['tremail'],
+            image=req.FILES['trimg'],
         )
         return  redirect('trall')
     return render(req, 'trainee/update.html',context)
