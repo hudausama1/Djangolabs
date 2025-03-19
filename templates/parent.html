@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {%block tit%}
+            paren page
+        {%endblock%}
+    </title>
+</head>
+<body>
+<table border="1" width="100%" height="100%">
+    <tr>
+        <td>
+            <a href="">trainees</a>
+            <a href="">courses</a>
+            <a href="">logout</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {%block content%}
+            <h1>parent content</h1>
+            {%endblock%}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h1>copy.</h1>
+        </td>
+    </tr>
+</table>
+
+</body>
+<script>
+    {%block js%}
+    {%endblock%}
+</script>
+</html>
