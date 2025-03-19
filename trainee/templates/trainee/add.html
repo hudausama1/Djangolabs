@@ -1,0 +1,28 @@
+{% extends 'parent.html'%}
+{%block tit%}
+Trainee - New
+{%endblock%}
+{%block content%}
+<h1>New Trainees</h1>
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <label>Name:</label>
+    <input type="text" required name="trname">
+    </br>
+    <label>Email:</label>
+    <input type="text" required name="tremail">
+    </br>
+    <label>Course:</label>
+        <select name="trcourse">
+            <option>select Course</option>
+            {%for course in courses%}
+                <option value="{{course.id}}">{{course.name}}</option>
+            {%endfor%}
+        </select>
+    </br>
+    <label>Profile image:</label>
+    <input type="file" required name="trimg">
+    </br>
+    <input type="submit" value="Add">
+</form>
+{%endblock%}

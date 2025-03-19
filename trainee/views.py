@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Trainee
+
 from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
 def getalltrainees(req):
