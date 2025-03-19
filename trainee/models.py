@@ -1,4 +1,5 @@
 from django.db import models
+from course.models import Course
 
 # Create your models here.
 class Trainee(models.Model):
@@ -11,3 +12,4 @@ class Trainee(models.Model):
     createdate=models.DateTimeField(auto_now_add=True)
     updateddate=models.DateTimeField(auto_now=True)
     isactive=models.BooleanField(default=True)
+    course=models.ForeignKey(to=Course,on_delete=models.CASCADE)
