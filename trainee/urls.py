@@ -15,5 +15,6 @@ urlpatterns=[
     path('Update/<int:pk>/', TraineeUpdateView.as_view(), name='trupdate'),
     path('api/trainees/', TraineeListAPIView.as_view(), name='trainee-list'),
     path('api/trainees/add/', TraineeCreateAPIView.as_view(), name='trainee-add'),
+    path('api/trainees/update/<int:pk>/', TraineeUpdateAPIView.as_view(), name='trainee-update'),
 
 ]
