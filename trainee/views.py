@@ -8,6 +8,22 @@ from django.views import View
 from django.views.generic import CreateView,UpdateView,ListView,DetailView,DeleteView
 #from ..course.models import Course
 
+class TraineeViewAdd(View):
+
+    def get(self,request):
+        context={'form':Traineeaddmodel()}
+        return render(request,'trainee/addform.html',context)
+    def post(self,request):
+        #get data inserted by end user
+        form=Traineeaddmodel(data=request.POST,files=request.FILES)
+        if(form.is_bound and form.is_valid()):
+            form.save()
+            return Trainee.gotoalltrainee()
+        else:
+            context={'form':form,'error':form.errors}
+            return render(request,'trainee/addform.html',context)
+
+
 class TraineeShow(DetailView):#id
     model = Trainee
     context_object_name = 'trainee'
@@ -50,6 +66,7 @@ def updatetrainees(req,id):
             context['errors']=form.errors
             return render(req, 'trainee/update.html',context)
     return render(req, 'trainee/update.html',context)
+
 def deletetrainees(req,id):
     #hard delete
     # Trainee.objects.filter(id=id).delete()
