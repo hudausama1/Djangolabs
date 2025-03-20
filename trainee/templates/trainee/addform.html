@@ -1,15 +1,15 @@
-{% extends 'parent.html'%}
-{%block tit%}
-Trainee - New
-{%endblock%}
-{%block content%}
-<h1>New Trainees forms</h1>
+{% extends 'parent.html' %}
+
+{% block tit %}
+Add Trainee
+{% endblock %}
+
+{% block content %}
+<h1>Add Trainee</h1>
 <form method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-    {{form.as_p}}
-    <input type="submit" value="Add">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
 </form>
-<div style="color:red">
-    <h1>{{error}}</h1>
-</div>
-{%endblock%}
+<a href="{% url 'trall' %}">Cancel</a>
+{% endblock %}
