@@ -4,6 +4,7 @@ from course.models import Course
 from .forms import Traineeadd, Traineeaddmodel
 from django.urls import reverse_lazy
 
+
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views import View
 from django.views.generic import CreateView,UpdateView,ListView,DetailView,DeleteView
@@ -18,7 +19,6 @@ class TraineeViewAdd_G(CreateView):
     success_url = reverse_lazy('trall') #
     fields = '__all__'
     exclude = ['isactive']
-
 
 class TraineeViewAdd(View):
 
@@ -51,6 +51,17 @@ class TraineeViewupdate(View):
         else:
             context={'form':form,'error':form.errors}
             return render(request,'trainee/update.html',context)
+
+class TraineeUpdateView(UpdateView):
+    model = Trainee  # Specify the model
+    fields = ['name', 'email', 'image', 'course', 'isactive']
+    template_name = 'trainee/update.html'
+    success_url = reverse_lazy('trainee_list')
+
+class TraineeDeleteView(DeleteView):
+    model = Trainee
+    template_name = 'trainee/delete.html'
+    success_url = reverse_lazy('trainee_list')
 
 class TraineeShow(DetailView):#id
     model = Trainee

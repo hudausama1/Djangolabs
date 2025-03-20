@@ -5,8 +5,10 @@ urlpatterns=[
     path('',TraineeList.as_view(),name='trall'),
     path('Show/<pk>',TraineeShow.as_view(),name='trshow'),
     path('Add',TraineeViewAdd_G.as_view,name='tradd'),
+    path('<int:pk>/delete/', TraineeDeleteView.as_view(), name='trdelete'),
     path('Update/<int:id>',updatetrainees,name='trupdate'),
     path('Delete/<int:id>',deletetrainees,name='trdelete'),
     path('Show/<pk>',TraineeShow.as_view(),name='trshow'),
+    path('<int:pk>/update/', TraineeUpdateView.as_view(), name='trupdate'),
 
 ]
