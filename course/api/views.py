@@ -3,6 +3,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from ..models import Course
 from .serializers import CourseSerializer
+from rest_framework import viewsets
+
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()  # Get all courses
+    serializer_class = CourseSerializer  # Use the CourseSerializer
+
 
 @api_view(['PUT'])
 def update_course(request, pk):
