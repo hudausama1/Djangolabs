@@ -1,5 +1,8 @@
 from django.urls import path
 from .views import *
+from .api.views import *
+from rest_framework import routers
+
 urlpatterns=[
     #path('',getalltrainees,name='trall'),
     path('',TraineeList.as_view(),name='trall'),
@@ -10,5 +13,7 @@ urlpatterns=[
     path('Delete/<int:pk>/', TraineeDeleteView.as_view(), name='trdelete'),
     #path('Show/<pk>',TraineeShow.as_view(),name='trshow'),
     path('Update/<int:pk>/', TraineeUpdateView.as_view(), name='trupdate'),
+    path('api/trainees/', TraineeListAPIView.as_view(), name='trainee-list'),
+    path('api/trainees/add/', TraineeCreateAPIView.as_view(), name='trainee-add'),
 
 ]
