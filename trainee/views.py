@@ -23,10 +23,31 @@ class TraineeViewAdd(View):
             context={'form':form,'error':form.errors}
             return render(request,'trainee/addform.html',context)
 
+class TraineeViewupdate(View):
+    #@login_required()
+    def get(self,request,id):
+        context={'form':Traineeaddmodel(instance=
+            Trainee.gettraineebyid(id)
+        )}
+        return  render(request,'trainee/update.html',context)
+    def post(self,request,id):
+        form=Traineeaddmodel(data=request.POST,files=request.FILES,
+                             instance=Trainee.gettraineebyid(id))
+        if(form.is_bound and form.is_valid()):
+            form.save()
+            return Trainee.gotoalltrainee()
+        else:
+            context={'form':form,'error':form.errors}
+            return render(request,'trainee/update.html',context)
 
 class TraineeShow(DetailView):#id
     model = Trainee
     context_object_name = 'trainee'
+
+class TraineeList(ListView):
+    model = Trainee
+    template_name = 'trainee/list.html'
+    context_object_name = 'trainees'
 
 
 # Create your views here.
