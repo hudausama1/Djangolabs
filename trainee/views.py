@@ -2,11 +2,23 @@ from django.shortcuts import render,redirect
 from .models import Trainee
 from course.models import Course
 from .forms import Traineeadd, Traineeaddmodel
+from django.urls import reverse_lazy
 
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views import View
 from django.views.generic import CreateView,UpdateView,ListView,DetailView,DeleteView
 #from ..course.models import Course
+
+
+class TraineeViewAdd_G(CreateView):
+    #generate form --->model--->insert operation
+    # checl age traineee >21
+    model = Trainee
+    template_name = 'trainee/addform.html'
+    success_url = reverse_lazy('trall') #
+    fields = '__all__'
+    exclude = ['isactive']
+
 
 class TraineeViewAdd(View):
 
